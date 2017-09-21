@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 gem 'ansi', '~> 1.5'
 
 gem 'bson', '~> 3.0'
-gem 'activesupport', '> 4' 
+gem 'activesupport', '> 4'
 gem 'ohm', '~> 3.0.3'
 
 gem 'erubis', '~> 2.7.0'
@@ -25,3 +25,4 @@ gem 'sinatra-flash', '~> 0.3.0'
 gem 'compass', '~> 1.0.3'
 gem 'aws-sdk', '~> 2.9.11'
 gem 'wikidot-api', '~> 0.0.6'
+gem 'mediawiki_api', '~> 0.7.1'

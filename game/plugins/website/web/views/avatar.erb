@@ -1,12 +1,10 @@
 <% if char %>
 
-  <% if char.icon %>
-  <a href="/char/<%= char.id %>">
-    <img class="small-profile-icon" src="<%= char.icon %>" />
-   </a>
- <% end %>
+    <a href="<%= char_page_url(char) %>">
+    <img class="small-profile-icon" src="<%= icon_for_char(char) %>" />
+    </a>
  
- <a href="/char/<%= char.id %>">
+ <a href="<%= char_page_url(char) %>">
      <%= char.name %>
   </a>
 <% end %>

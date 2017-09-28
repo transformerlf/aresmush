@@ -3,11 +3,14 @@
 
 %xh<%= t('idle.roster_column_titles') %>%xn
 <% paginator.items.each do |r| %>
-<%= left( r.name, 20 ) -%>
+<%= left( name(r), 20 ) -%>
+<%= center( r.roster_played.yesno, 5 ) -%>
 <%= center( r.demographic('gender'), 13 ) -%>
 <%= left( r.group("Position"), 20 ) -%>
 <%= left( r.group("Faction"), 20 ) %>
+   <% if r.roster_notes %><%= r.roster_notes %>%R<% end %>
 <% end %>
 <%= paginator.page_footer %>
+%xh<%= t('idle.roster_url_hint', :url => roster_url) %>%xn
 <%= t('idle.star_means_contact_required')%>
 <%= footer %>

@@ -459,20 +459,24 @@ GENERAL UTILITIES
 }
 
 .image-container {
-    max-width: 80%;
     padding: 5px;
+    max-width: 100%;
+}
+
+.image-container img {
+    max-width: 100%;
 }
 
 .image-container.center img {
     display: block;
     margin-left: auto;
-        margin-right: auto;
+    margin-right: auto;
 }
 
 .image-container.right img {
     display: block;
     margin-left: auto;
-        margin-right: 0;
+    margin-right: 0;
 }
 
 
@@ -746,9 +750,10 @@ ul.char-ability-list {
 }
 
 .profile-image {
-    width: 200px;
+    width: 300px;
     margin: auto;
     display: block;
+    border-radius: 4px;
 }
 
 .relationship-image {
@@ -780,8 +785,15 @@ ul.char-ability-list {
     padding-bottom: 15px;
 }
 
-.char-scene-list li {
-    display: inline;
+.char-scene-list {
+    max-width: 50%;
+    span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: 100%;
+    }
 }
 
 .relaedScenesList, .participantsList {

@@ -1,7 +1,7 @@
 <h1><%= @page.display_title %></h1>
 
 <div class="ansi">
-<%= format_markdown_for_html @page.text %>
+<%= @page_html %>
 </div>
 
 <hr/>
@@ -23,6 +23,7 @@
       
       <% if is_approved? %>
 
+          <a href="/wiki/<%= @page.name %>/rebuild" class="btn btn-default">Rebuild</a>
           <a href="/wiki/<%= @page.name %>/edit" class="btn btn-primary">Edit</a>
 
       <% end %>

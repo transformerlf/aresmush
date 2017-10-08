@@ -19,7 +19,11 @@ module AresMUSH
     end
     
     get '/files/?' do
-      @files = uploaded_files
+      @page = params[:page] ? params[:page].to_i : 1
+      paginator = AresMUSH::Paginator.paginate uploaded_files, @page, 25
+      @files = paginator.items
+      @pages = paginator.total_pages
+      
       erb :"files/files_index"
     end
     
@@ -155,6 +159,10 @@ module AresMUSH
       File.open(file_path, 'wb') {|f| f.write tempfile.read }
       flash[:info] = "File uploaded!"
       redirect redirect_url
+    end
+    
+    get '/files/:name/' do |name|
+      send_file "/files/#{name.downcase}"
     end
   end
 end

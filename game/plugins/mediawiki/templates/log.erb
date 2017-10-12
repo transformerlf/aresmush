@@ -1,0 +1,16 @@
+==<%= summary %>
+
+include LogInfoBox
+summary=<%= summary %>
+location=<%= location %>
+related=None
+
+include LogPlayerTop
+
+<% scene.participant_names.sort.each do |name| %>
+name=<%= name %>
+<% end %>
+include LogPlayerBottom
+
+
+<%= log %>

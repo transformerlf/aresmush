@@ -1,6 +1,6 @@
 {
-  "port": 8181,
+  "port": 9002,
   "log_file": "game/logs/webserver.log",
   "environment": "development",
-  "max_pool_size": 4
+  "max_pool_size": 1
 }

@@ -3,6 +3,6 @@ server:
 
     port: 4201
 
-    websocket_port: 4202
+    websocket_port: 9001
 
-    webserver_port: 8181
+    webserver_port: 9002

@@ -1,8 +1,8 @@
 server:
-    hostname: localhost
+    hostname: 138.197.96.131
 
-    port: 4201
+    port: 1984
+    
+    websocket_port: 9001
 
-    websocket_port: 4202
-
-    webserver_port: 8181
+    webserver_port: 9000

@@ -1,5 +1,11 @@
+---
 names:
-    # Note: Use ALL LOWERCASE names.
-    restricted:
-        - me
-        - here
+  restricted:
+  - optimus prime
+  - megatron
+  - sentinel
+  - zeta
+  - nova
+  - nova prime
+  - nemesis
+  - alpha trion

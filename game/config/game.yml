@@ -1,10 +1,10 @@
 game:
-    name: "Local Test"
+    name: "Transformers: Lost and Found"
 
-    category: Social
+    category: Sci-Fi
     
-    description: "AresMUSH test site."
+    description: "Never tall enough to meet eyes."
     
-    website: "http://aresmush.com"
+    website: ""
         
     public_game: false

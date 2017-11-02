@@ -3,7 +3,6 @@ demographics:
     max_age: 65
 
     required_properties:
-        - actor
         - hair
         - eyes
         - skin
@@ -12,7 +11,7 @@ demographics:
         - fullname
         - gender
         - birthdate
-    
+
     editable_properties:
         - fullname
         - hair
@@ -20,7 +19,6 @@ demographics:
         - fullname
 
     demographics:
-        - actor
         - hair
         - eyes
         - skin
@@ -75,7 +73,7 @@ demographics:
                 Medical Support: "Other medical personnel."
                 Deck Crew: "Air wing support/maintenance personnel."
                 Other: "Any other position."
-            
+
     shortcuts:
         "groups": "group"
         "faction": "group/set faction="

@@ -1,5 +1,5 @@
 game:
-    name: "Transformers: Lost and Found"
+    name: "Transformers"
 
     category: Sci-Fi
     
@@ -8,3 +8,5 @@ game:
     website: ""
         
     public_game: false
+
+    subtitle: "Lost and Found"

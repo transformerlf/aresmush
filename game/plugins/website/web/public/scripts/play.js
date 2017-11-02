@@ -54,7 +54,7 @@
     };
     
     connect = function() {
-      ws = new WebSocket(`ws://${config.host}:${config.port}/websocket`);
+      ws = new WebSocket(`ws://ares/websocket`);
       keepalive_interval = window.setInterval(function(){ idleKeepalive() }, idle_keepalive_ms);        
           
       ws.onmessage = function(evt) {

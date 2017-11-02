@@ -1,0 +1,116 @@
+<specs>
+  <h3>Specs</h3>
+  <div class="panel panel-default" each={set, name in specs}>
+    <div class="panel-heading"><span class="label label-danger spec">{name}</span>
+      <label class="pull-right">
+        <span data-set={name}>{points}</span> points
+      </label>
+    </div>
+    <div class="panel-body" data-name={name}>
+      <div class="container specs">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6" each={spec in set}>
+            <div class="row form-group">
+              <label for="{name}[{spec.name}]" class="col-sm-6 col-form-label">{spec.name}</label>
+              <select class="selectpicker col-sm-6" name="{name}[{spec.name}]" data-spec={name} onchange={calcPoints}>
+                <option each={index in range}>{index}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-default" onclick={back}>Back</button>
+    <button class="btn btn-primary pull-right" onclick={next}>Continue</button>
+  </div>
+
+  <script type="text/javascript">
+    this.config = opts.config.specs;
+    this.specs = opts.specs;
+    this.dist = opts.dist || {};
+    this.points = 0;
+    this.range = Array.from(new Array(this.config.max - this.config.min + 1), function (val, i) {
+      return i + this.config.min;
+    }.bind(this));
+
+    var stage = parseInt(opts.stage);
+    var events = opts.events;
+
+    this.calcPoints = function () {
+      var points = {};
+      var core = 0;
+
+      this.root.querySelectorAll('[data-name]').forEach(function (panel) {
+        points[panel.getAttribute(['data-name'])] =
+          Array.from(panel.querySelectorAll('[data-spec]'))
+            .map(function (el) { return parseInt(el.value); })
+            .reduce(function (sum, value) { return sum + value; });
+      });
+
+      core = points.core;
+      delete points.core;
+      var max = Math.max.apply(null, Object.values(points)) || 0;
+
+      this.root.querySelector('[data-set=core]').innerHTML = this.points - core - max;
+      Object.entries(points).forEach(function ([key, value]) {
+        this.root.querySelector('[data-set=' + key + ']').innerHTML = this.points - core - value;
+      }.bind(this));
+    }.bind(this);
+
+
+    function getRemainingPoints (query) {
+      var set = Array.from(query).map(function (el) {
+        return { spec: el.getAttribute('data-set'), val: parseInt(el.innerHTML) };
+      });
+
+      return set.map(function (item) { return item.val; });
+    }
+
+    this.back = function (e) {
+      e.preventDefault();
+      events.trigger('stage:prev', stage);
+    };
+
+    this.next = function (e) {
+      e.preventDefault();
+      var set = getRemainingPoints(this.root.querySelectorAll('[data-set]'));
+      var max = Math.max.apply(null, set);
+      var min = Math.min.apply(null, set);
+
+      if (max > 0) {
+        alertify.error('You still have points to spend!');
+      } else if (min < 0) {
+        alertify.error('You have spent too many points!')
+      } else {
+        events.trigger('stage:next', stage);
+      }
+    }.bind(this);
+
+    this.on('mount', function () {
+      this.calcPoints();
+      $('.specs .selectpicker').selectpicker();
+    });
+
+    this.on('update', function () {
+      this.dist = opts.dist || {};
+      this.points = this.dist.specs;
+      this.calcPoints();
+      $('.specs .selectpicker').selectpicker();
+    });
+  </script>
+
+  <style>
+    span.spec {
+      background-color: #6B0C22;
+    }
+    label.col-form-label {
+      margin-bottom: 0px;
+      margin-top: 5px;
+    }
+    .panel-heading {
+      text-transform: capitalize;
+    }
+  </style>
+</specs>

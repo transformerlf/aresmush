@@ -1,0 +1,87 @@
+<priorities>
+  <h3>Prioritization</h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="container prioritization">
+        <div class="row" each={set, priority in priorities}>
+            <div class="col-sm-3"> <span class="label label-danger priority">{priority}</span></div>
+            <div
+              class="col-sm-3"
+              each={value, rating in set}
+              onclick={calculatePoints}>
+              <span class="badge value" data-value={value} data-rating={rating} data-priority={priority}>
+                {value}
+              </span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-default" onclick={back}>Back</button>
+    <button class="btn btn-primary pull-right" onclick={next}>Continue</button>
+  </div>
+
+  <script type="text/javascript">
+    this.priorities = opts.config.priorities;
+    var stage = parseInt(opts.stage);
+    var events = opts.events;
+
+    this.calculatePoints = function (e) {
+      var selector = '[data-priority=' +
+        e.target.getAttribute('data-priority') +
+        '], [data-rating=' +
+        e.target.getAttribute('data-rating') +
+        ']';
+
+      this.root.querySelectorAll(selector).forEach(function (el) {
+        el.classList.remove('active');
+      });
+      e.target.classList.add('active');
+    }.bind(this);
+
+    this.back = function (e) {
+      e.preventDefault();
+      events.trigger('stage:prev', stage);
+    };
+
+    this.next = function (e) {
+      e.preventDefault();
+      var dist = {};
+      this.root.querySelectorAll('.value.active').forEach(function (el) {
+        dist[el.getAttribute('data-priority')] = parseInt(el.getAttribute('data-value'));
+      });
+      if (Object.keys(dist).length !== Object.keys(this.priorities).length) {
+        alertify.error('Must select a value for each priority bracket.')
+      } else {
+        events.trigger('priorities:changed', dist);
+        events.trigger('stage:next', stage);
+      }
+    }.bind(this);
+  </script>
+
+  <style>
+    [data-rating] {
+      cursor: pointer;
+    }
+    .prioritization .row {
+      padding: 10px;
+    }
+    span.priority {
+      font-size: 1em;
+      background-color: #6B0C22;
+      text-transform: capitalize;
+      text-align: center;
+    }
+
+    span.value {
+      background-color: #fff;
+      color: #333;
+    }
+
+    span.active {
+      background-color: #777;
+      color: #fff;
+    }
+  </style>
+</priorities>

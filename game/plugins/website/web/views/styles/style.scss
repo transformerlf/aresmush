@@ -26,21 +26,19 @@ BASIC CONTAINERS
 
 .header-wrap
 {
-    background: url('/images/background.png');
+    background-color: #222;
     background-size: cover;
-    min-height: 200px;   
-    background-position: center; 
+    min-height: 50px;
+    background-position: center;
 }
 
 .title-wrap
-{    
-    height: 149px;   
+{
     color: $primary-words-color;
-    padding: 10px;
-    padding-left: 20px;    
-    padding-top: 21px;
+    padding-left: 20px;
     margin: 0px;
-    background-color: rgba(0, 0, 0, .25); 
+    max-height: 100px;
+    background: url('/images/nav-bg.jpg') center;
 }
 
 
@@ -51,7 +49,7 @@ BASIC CONTAINERS
 }
 
 .body-container {
-    padding: 10px;    
+    padding: 10px;
 }
 
 
@@ -69,7 +67,7 @@ NAVIGATION
 ------------------------- */
 
 a {
-    color: $secondary-color;    
+    color: $secondary-color;
     text-decoration: none;
 }
 
@@ -79,7 +77,7 @@ a:focus{
     text-decoration: none;
 }
 
-.user-bar { 
+.user-bar {
     padding-right: 10px;
 }
 
@@ -103,7 +101,7 @@ a:focus{
     color: $secondary-color;
 }
 
-li hr { 
+li hr {
     margin: 2px;
     border-color: $secondary-color;
     border-width: 4px;
@@ -146,19 +144,19 @@ textarea.pre {
 pre {
     border: 0;
     padding: 0;
-    white-space: pre-wrap;      
+    white-space: pre-wrap;
     white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;    
-    white-space: -o-pre-wrap;  
-    word-wrap: normal;   
-    word-break: normal;  
-    overflow-x:hidden; 
-    overflow-wrap: normal; 
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: normal;
+    word-break: normal;
+    overflow-x:hidden;
+    overflow-wrap: normal;
     background-color: inherit;
 }
 
 
-.ace-editor { 
+.ace-editor {
     position: relative;
     height: 500px;
     width: 100%;
@@ -172,7 +170,7 @@ pre {
 blockquote{
 	margin: 0.4em 0;
     width: 80%;
-	padding: 10px;	
+	padding: 10px;
     font-size: 1em;
     background-color: #F8F8F8;
     border: 0px;
@@ -183,14 +181,14 @@ blockquote{
     -webkit-margin-end: 40px;
 }
 
-pre code { 
+pre code {
 	border: 2px solid $secondary-color;
     border-radius: 5px;
 	background-color: black;
     font-size: 1em;
-    color: #fff; 
+    color: #fff;
 	font-family: "Lucida Console", Monaco, 'Andale Mono', 'Courier New', Courier, monospace;
-    font-size: 14px; 
+    font-size: 14px;
 	margin: 0.4em 0;
     width: 700px;
     padding: 10px;
@@ -255,7 +253,7 @@ BOOTSTRAP OVERRIDES
     min-height: 50px;
 }
 
-.panel-primary { 
+.panel-primary {
     border-color: $primary-color;
 }
 
@@ -264,7 +262,7 @@ BOOTSTRAP OVERRIDES
     border-color: $primary-color;
 }
 
-.panel-info { 
+.panel-info {
     border-color: $border-color;
 }
 
@@ -279,7 +277,7 @@ BOOTSTRAP OVERRIDES
     border-color: $primary-color;
 }
 
-.btn-info { 
+.btn-info {
     background-color: $secondary-color;
     border-color: $secondary-color;
 }
@@ -330,7 +328,7 @@ YOUTUBE MUSIC PLAYER
     border:none;
     background:transparent;
     outline:none;
-    display:block; 
+    display:block;
 }
 
 .musicplayer-frame, .musicplayer-preload  {
@@ -339,7 +337,7 @@ YOUTUBE MUSIC PLAYER
     overflow:hidden;
     visibility:hidden;
     position:absolute;
-    display:inline 
+    display:inline
 }
 
 .musicplayer-wrap {
@@ -388,7 +386,7 @@ FOOTER
 
 .footer {
     font-size: 0.9em;
-    color: $faded-text-color;    
+    color: $faded-text-color;
     border-top: 1px solid $faded-text-color;
     margin-top: 40px;
     padding-top: 10px;
@@ -448,14 +446,14 @@ GENERAL UTILITIES
     padding-bottom: 20px;
 }
 
-.hint { 
+.hint {
     color: $faded-text-color;
     font-style: italic;
     font-weight: bold;
     padding-left: 10px;
 }
 
-.tinyhint { 
+.tinyhint {
     color: $faded-text-color;
     font-style: italic;
     padding-left: 10px;
@@ -554,20 +552,20 @@ PLAY SCREEN
 }
 
 #help pre {
- 
-} 
+
+}
 
 #console pre {
     background-color: black;
     color: #fff;
 
-}    
-     
+}
+
 /* -------------------------
 CHARGEN SCREEN
 ------------------------- */
 
-.cg-tip { 
+.cg-tip {
     color: $faded-text-color;
     font-style: italic;
     font-size: 1em;
@@ -622,7 +620,7 @@ SCENES SCREEN
     height: 150px;
     -moz-border-radius: 25px;
     -webkit-border-radius: 25px;
-    border-radius: 25px;    
+    border-radius: 25px;
     overflow: hidden;
     background: $log-icon-color;
 }
@@ -632,7 +630,7 @@ SCENES SCREEN
     min-height: 90%;
     margin-left: auto;
     margin-right: auto;
-    display: block;    
+    display: block;
 }
 
 .log-icon-title-container {
@@ -643,10 +641,10 @@ SCENES SCREEN
     top: -20px;
     -moz-border-radius: 25px 0px;
     -webkit-border-radius: 25px 0px;
-    border-bottom-left-radius: 25px;  
-    border-bottom-right-radius: 25px;  
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
     opacity: 0.8;
-    filter: alpha(opacity=80);  
+    filter: alpha(opacity=80);
     vertical-align: middle;
 }
 .log-icon-title {
@@ -668,20 +666,20 @@ SCENES SCREEN
     background-color: #f0ad4e;
 }
 
-.log-box { 
+.log-box {
 
     background-color: white;
     margin-left: 30px;
     margin-right: 30px;
-    padding: 20px;    
+    padding: 20px;
 }
 
 .log-wrap {
     border-radius: 8px;
-    border: 1px solid $primary-outline-color; 
+    border: 1px solid $primary-outline-color;
     background-color: #394252;
     margin:5px;
-    padding:5px; 
+    padding:5px;
     background-position:left top;
     background-size: cover;
     background-repeat: no-repeat;
@@ -705,15 +703,15 @@ CHARACTERS SCREEN
     padding-left: 10px;
     padding-right: 10px;
     width: 150px;
-    
+
 }
 
-.profile-box { 
+.profile-box {
 
     background-color: white;
     margin-left: 30px;
     margin-right: 30px;
-    padding: 20px;    
+    padding: 20px;
 }
 
 .profile-box .row {
@@ -739,18 +737,18 @@ CHARACTERS SCREEN
 
 .profile-wrap {
     border-radius: 8px;
-    border: 1px solid $primary-outline-color; 
+    border: 1px solid $primary-outline-color;
     background-color: #394252;
     margin:5px;
-    padding:15px; 
+    padding:15px;
     background-position:left top;
     background-size: cover;
     background-repeat: no-repeat;
     background-image:url('/images/box-bg.png');
 }
 
-ul.char-ability-list { 
-  list-style-type: square;  
+ul.char-ability-list {
+  list-style-type: square;
 }
 
 .profile-image {
@@ -784,7 +782,7 @@ ul.char-ability-list {
     text-align: center;
 }
 
-.profile-tab { 
+.profile-tab {
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -808,22 +806,22 @@ ul.char-ability-list {
 
 /*.char-scene-list li:before { content: "\2666  "; }*/
 
-@media (max-width:800px)  { 
+@media (max-width:800px)  {
 
-.profile-wrap { 
-    padding: 10px; 
+.profile-wrap {
+    padding: 10px;
 }
 
-.profile-box { 
+.profile-box {
     padding: 10px;
     margin: 10px;
 }
 
-.log-wrap { 
+.log-wrap {
     padding: 10px;
 }
 
-.log-box { 
+.log-box {
     padding: 10px;
     margin: 10px;
 }
@@ -832,5 +830,5 @@ ul.char-ability-list {
     padding-left: 0px;
     padding-right: 0px;
 }
-    
+
     }

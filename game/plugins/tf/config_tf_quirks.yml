@@ -1,0 +1,8 @@
+tf:
+  quirks:
+    -
+      name: Trichanger
+      desc: changes. tri times.
+    -
+      name: Something else
+      desc: Not trichanger

@@ -13,19 +13,18 @@ module AresMUSH
         redirect char_page_url(@user)
       end
 
+      puts params
+      Global.logger.debug "===================================="
+      Global.logger.debug params
+      Global.logger.debug "===================================="
+
       #### ---------------------------------
       #### DEMOGRAPHICS
       #### ---------------------------------
 
       @user.update_demographic :fullname, params[:fullname]
-      @user.update_demographic :skin, titlecase_arg(params[:skin])
-      @user.update_demographic :hair, titlecase_arg(params[:hair])
-      @user.update_demographic :eyes, titlecase_arg(params[:eyes])
+      @user.update_demographic :title, titlecase_arg(params[:title])
       @user.update_demographic :height, titlecase_arg(params[:height])
-      @user.update_demographic :physique, titlecase_arg(params[:physique])
-      @user.update_demographic :callsign, titlecase_arg(params[:callsign])
-      @user.update_demographic :gender, params[:gender]
-      @user.update_demographic :actor, params[:actor]
 
       age = params[:age].to_i
       if (!Demographics.check_age(age))
@@ -42,9 +41,9 @@ module AresMUSH
       @user.update(cg_background: format_input_for_mush(params[:background]) )
       Describe.update_current_desc(@user, format_input_for_mush(params[:description]))
 
-
-
-      redirect "/chargen?tab=#{params[:tab] || 'background'}"
+      content_type :json
+      JSON.generate(params)
+  #    redirect "/chargen?tab=#{params[:tab] || 'background'}"
     end
   end
 end

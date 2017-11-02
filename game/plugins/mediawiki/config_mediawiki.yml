@@ -1,7 +1,0 @@
-mediawiki:
-    icon_url: ""
-    autopost_enabled: true
-    log_categories:
-        Social: log
-        Event: event
-        Vignette: vignette

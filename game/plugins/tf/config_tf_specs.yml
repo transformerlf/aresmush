@@ -1,0 +1,34 @@
+tf:
+  specs:
+    core:
+      -
+        name: Processors
+        desc: About processors
+      -
+        name: Two
+        desc: for view
+      -
+        name: Three
+        desc: Whee!
+
+    robot:
+      -
+        name: Agility
+        desc: Agility desc
+      -
+        name: TwoTwo
+        desc: for view
+      -
+        name: ThreeThree
+        desc: Whee!
+
+    vehicle:
+      -
+        name: Armor
+        desc: Armor desc
+      -
+        name: TwoThree
+        desc: for view
+      -
+        name: ThreeFour
+        desc: Whee!

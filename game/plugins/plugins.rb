@@ -35,6 +35,7 @@ module AresMUSH
         "rooms",
         "scenes",
         "status",
+        "tf",
         "tinker",
         "utils",
         "weather",

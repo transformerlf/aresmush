@@ -1,0 +1,52 @@
+<cgen>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div>
+        <button class="btn btn-default pull-right" onclick={reset} data-id="reset">Start Over</button>
+      </div>
+      <form method="POST" action="/chargen">
+        <demographics show={stage == 1} config={cgen.config} events={events} stage="1"></demographics>
+        <priorities show={stage == 2} config={cgen.config} events={events} stage="2"></priorities>
+        <quirks show={stage == 3} modes={cgen.modes} quirks={cgen.quirks} config={cgen.config} events={events} dist={dist} stage="3"></quirks>
+        <specs show={stage == 4} specs={cgen.specs} config={cgen.config} events={events} dist={dist} stage="4"></specs>
+        <skills show={stage == 5} skills={cgen.skills} config={cgen.config} events={events} dist={dist} stage="5"></skills>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    this.app = {};
+    this.cgen = cgen;
+    this.stage = 1;
+    this.prioritized = opts.prioritized || false;
+    this.events = riot.observable();
+    this.dist = opts.dist || {};
+
+
+    this.reset = function (e) {
+      e.preventDefault();
+      this.root.querySelector('form').reset();
+      this.events.trigger('stage:next', 0);
+      this.root.querySelector('[data-id=reset]').blur();
+    }.bind(this);
+
+    this.events.on('submit', function () {
+      this.root.querySelector('form').submit();
+    }.bind(this));
+
+    this.events.on('priorities:changed', function (dist) {
+      this.update({ dist: dist });
+    }.bind(this));
+
+    this.events.on('stage:prev', function(num) {
+      window.scrollTo(0, 0);
+      this.update({ stage: num - 1 });
+    }.bind(this));
+
+    this.events.on('stage:next', function (num) {
+      window.scrollTo(0, 0);
+      this.update({ stage: num + 1 });
+    }.bind(this))
+
+  </script>
+</cgen>

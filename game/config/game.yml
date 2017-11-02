@@ -1,10 +1,12 @@
 game:
-    name: "Local Test"
+    name: "Transformers"
+
+    subtitle: "Lost and Found"
 
     category: Social
-    
+
     description: "AresMUSH test site."
-    
+
     website: "http://aresmush.com"
-        
+
     public_game: false

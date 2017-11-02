@@ -1,0 +1,89 @@
+<skills>
+  <h3>Skills</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <label class="pull-right">
+        <span data-set="skills">{points}</span> points
+      </label>
+    </div>
+    <div class="panel-body">
+      <div class="container skills">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6" each={skill in skills}>
+            <div class="form-group">
+              <label for="{skill.name}" class="col-sm-6 col-form-label">{skill.name}</label>
+              <select class="col-sm-6 selectpicker" onchange={calcPoints} data-skill={skill.name} name="{skill.name}">
+                <option each={index in range}>{index}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-default" onclick={back}>Back</button>
+    <button name="submit-app" onclick={submit} class="btn btn-primary pull-right">Submit App!</button>
+  </div>
+
+  <script type="text/javascript">
+    this.skills = opts.skills;
+    this.dist = opts.dist || {};
+    this.config = opts.config.skills;
+    this.points = this.dist.skills;
+    this.range = Array.from(new Array(this.config.max - this.config.min + 1), function (val, i) {
+      return i + this.config.min;
+    }.bind(this));
+
+    var events = opts.events;
+    var stage = parseInt(opts.stage);
+
+    this.calcPoints = function () {
+      var spent = Array.from(this.root.querySelectorAll('[data-skill]'))
+        .map(function (el) { return parseInt(el.value); })
+        .reduce(function (sum, value) { return sum + value; });
+      this.root.querySelector('[data-set=skills]').innerHTML = this.points - spent;
+      return this.points - spent;
+    }.bind(this);
+
+    this.back = function (e) {
+      e.preventDefault();
+      events.trigger('stage:prev', stage);
+    };
+
+    this.submit = function (e) {
+      e.preventDefault();
+  //    var points = this.calcPoints();
+
+      // if (points > 0) {
+      //   alertify.error('You still have points to spend!');
+      // } else if (points < 0) {
+      //   alertify.error('You have spent too many points!')
+      // } else {
+        events.trigger('submit');
+  //    }
+    }.bind(this);
+
+    this.on('mount', function () {
+      this.calcPoints();
+      $('.selectpicker').selectpicker('refresh');
+    });
+
+    this.on('update', function () {
+      this.dist = opts.dist || {};
+      this.points = this.dist.skills;
+      this.calcPoints();
+      $('.selectpicker').selectpicker('refresh');
+    });
+  </script>
+
+  <style>
+    label.col-form-label {
+      margin-bottom: 0px;
+      margin-top: 5px;
+    }
+    .panel-heading {
+      text-transform: capitalize;
+    }
+  </style>
+</skills>

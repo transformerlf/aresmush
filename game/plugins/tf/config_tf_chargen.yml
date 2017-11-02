@@ -1,0 +1,33 @@
+tf:
+  chargen:
+    specs:
+      max: 10
+      min: 2
+
+    skills:
+      max: 3
+      min: 0
+
+    demographics:
+      max_age: 10000000
+      min_age: 20
+      factions:
+        - None
+        - Autobot
+        - Decepticon
+
+    priorities:
+      specs:
+        A: 40
+        B: 32
+        C: 24
+
+      skills:
+        A: 12
+        B: 8
+        C: 4
+
+      quirks:
+        A: 2
+        B: 1
+        C: 0

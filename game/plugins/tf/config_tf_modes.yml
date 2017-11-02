@@ -1,0 +1,26 @@
+tf:
+  modes:
+    -
+      name: Meep
+      desc: Jeep
+      type: vehicle
+      spec: vehicle
+      form: secondary
+    -
+      name: Bird
+      desc: A plane
+      type: animal
+      spec: vehicle
+      form: secondary
+    -
+      name: bot
+      desc: in disguise
+      type: robot
+      spec: robot
+      form: primary
+    -
+      name: tape
+      desc: REALLY
+      type: misc
+      spec: robot
+      form: both

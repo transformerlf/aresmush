@@ -17,12 +17,6 @@ load 'web/controllers/chars/edit_char.rb'
 load 'web/controllers/chargen/chargen.rb'
 load 'web/controllers/chargen/chargen_save.rb'
 
-load 'web/controllers/combat/combat.rb'
-load 'web/controllers/combat/combat_add_combatant.rb'
-load 'web/controllers/combat/combat_manage_save.rb'
-load 'web/controllers/combat/combat_manage.rb'
-load 'web/controllers/combat/combat_view.rb'
-
 load 'web/controllers/config/config.rb'
 load 'web/controllers/config/config_edit.rb'
 load 'web/controllers/config/config_update.rb'
@@ -44,7 +38,6 @@ load 'web/controllers/jobs/job_create.rb'
 load 'web/controllers/jobs/job_reply.rb'
 load 'web/controllers/jobs/job.rb'
 load 'web/controllers/jobs/jobs_index.rb'
-
 
 load 'web/controllers/locations/locations.rb'
 

@@ -1,0 +1,136 @@
+<quirks>
+  <h3><span class="quirks">Quirks and </span>Modes</h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="container quirks">
+        <div class="row">
+          <div class="col-sm-12 clearfix">
+            <label class="label-cgen">Quirks</label>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="form-group col-sm-12">
+              <select
+                class="selectpicker"
+                {dist.quirks === 0 ? 'disabled' : ''}
+                multiple
+                name="quirks">
+                <option each={quirk in quirks}>{quirk.name}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container modes">
+        <div class="row">
+          <div class="col-sm-12">
+            <label class="label-cgen" for="background">Modes</label>
+          </div>
+          <div class="col-xs-12 col-sm-4" data-primary>
+            <div class="form-group col-sm-9">
+              <select
+                class="selectpicker"
+                name="primary">
+                <option each={mode in primary}>{mode.name}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4" data-secondary>
+            <div class="form-group col-sm-9">
+              <select
+                class="selectpicker"
+                name="secondary">
+                <option>None</option>
+                <option each={mode in secondary}>{mode.name}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4" data-tertiary style="display: none;">
+            <div class="form-group col-sm-9">
+              <select
+                class="selectpicker"
+                name="tertiary">
+                <option>None</option>
+                <option each={mode in secondary}>{mode.name}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-default" onclick={back}>Back</button>
+    <button class="btn btn-primary pull-right" onclick={next}>Continue</button>
+  </div>
+
+  <script type="text/javascript">
+    this.dist = opts.dist || {};
+    this.quirks = opts.quirks;
+    this.primary = opts.modes.filter(function (mode) {
+      if (mode.form === 'primary' || mode.form === 'both') {
+        return mode;
+      }
+    });
+
+    this.secondary = opts.modes.filter(function (mode) {
+      if (mode.form === 'secondary' || mode.form === 'both') {
+        return mode;
+      }
+    });
+    var stage = parseInt(opts.stage);
+    var events = opts.events;
+
+    this.back = function (e) {
+      e.preventDefault();
+      events.trigger('stage:prev', stage);
+    };
+
+    this.next = function (e) {
+      e.preventDefault();
+      var val = $('select[name=quirks]').val() || [];
+      if (val.length !== this.dist.quirks) {
+        alertify.error('Must select ' +
+          this.dist.quirks +
+          ' quirk' + (this.dist.quirks.length === 1 ? '.' : 's.')
+        );
+      } else {
+        events.trigger('stage:next', stage);
+      }
+    }.bind(this);
+
+    this.on('update', function () {
+      this.dist = opts.dist || {};
+      var $select = $('select[name=quirks]');
+      $select.off('changed.bs.select');
+      if (this.dist.quirks === 0) {
+        $select.attr('disabled', true);
+        $select.addClass('disabled');
+      } else {
+        $select.attr('disabled', false);
+        $select.removeClass('disabled');
+      }
+      $select.attr('disabled', this.dist.quirks === 0 ? true : false);
+      $select.val([]);
+      $select.trigger('change.abs.preserveSelected');
+      $select.selectpicker({ maxOptions: this.dist.quirks });
+      $select.selectpicker('refresh');
+      $select.on('changed.bs.select', function () {
+        var val = $select.val() || [];
+        if (val.includes('Trichanger')) {
+          $('[data-tertiary]').show();
+        } else {
+          $('[data-tertiary]').hide().val([]);
+        }
+      }.bind(this));
+    });
+  </script>
+
+  <style>
+    .label-cgen {
+      padding: 3px 5px;
+      color: #fff;
+      background-color: #6B0C22;
+      border-radius: 4px;
+    }
+  </style>
+</quirks>

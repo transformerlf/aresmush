@@ -1,32 +1,23 @@
 <h1>Character Generation</h1>
+<cgen></cgen>
 
-<p>The online character creation tool will guide you through creating your character.</p>
+<script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
+<script src="/scripts/cgen/cgen.tag.html" type="riot/tag"></script>
+<script src="/scripts/cgen/demographics.tag.html" type="riot/tag"></script>
+<script src="/scripts/cgen/priorities.tag.html" type="riot/tag"></script>
+<script src="/scripts/cgen/specs.tag.html" type="riot/tag"></script>
+<script src="/scripts/cgen/skills.tag.html" type="riot/tag"></script>
+<script src="/scripts/cgen/quirks.tag.html" type="riot/tag"></script>
 
-<form method="POST" action="/chargen">
+<script>
+  alertify.set('notifier', 'position', 'top-right');
+  cgen = {
+    config: <%= @chargen %>,
+    specs: <%= @specs %>,
+    skills: <%= @skills %>,
+    quirks: <%= @quirks %>,
+    modes: <%= @modes %>
+  };
 
-    <div class="panel panel-warning">
-
-        <div class="panel-heading">
-            Save Progress
-        </div>
-
-        <div class="panel-body">
-
-            <p>Changes you make here are not made in-game until you click the <b>Save</b> button or switch tabs.  Use the <b>App Status</b> tab to make sure there are no issues with your character and to submit them for approval when you're done. </p>
-
-            <p>
-                <button type="submit" name="save" class="btn btn-warning">Save</button>
-            </p>
-
-        </div>
-    </div>
-
-
-    <button type="submit" name="tab" value="app" class="btn btn-primary">App Status</button>
-
-
-
-    <%= erb :"/chargen/chargen_app" %>
-    <%= erb :"/chargen/chargen_demo" %>
-
-</form>
+  riot.mount('*');
+</script>

@@ -1,0 +1,93 @@
+<demographics>
+    <h3>Character Info</h3>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container demographics">
+          <div class="row">
+            <div class="col-sm-12 clearfix">
+              <label class="label-cgen">Basics</label>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Name">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" class="form-control" name="title" placeholder="Title">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" class="form-control" name="age" placeholder="Age">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <select class="selectpicker" name="faction">
+                  <option each={faction in config.factions}>{faction}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label-cgen" for="background">Background</label>
+              <textarea class="form-control" name="background" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-primary pull-right" onclick={next}>Continue</button>
+    </div>
+
+    <script type="text/javascript">
+      var stage = parseInt(opts.stage);
+      var events = opts.events;
+      this.config = opts.config.demographics;
+
+      this.next = function (e) {
+        e.preventDefault();
+        var error = 0;
+        if (this.root.querySelector('[name=name]').value == '') {
+          alertify.error('Name required.');
+          error++;
+        }
+        var age = parseInt(this.root.querySelector('[name=age]').value) || 0;
+        if (age > this.config.max_age) {
+          alertify.error('Cannot be older than ' + this.config.max_age + '.');
+          error++;
+        } else if (age < this.config.min_age) {
+          alertify.error('Cannot be younger than ' + this.config.min_age + '.');
+          error++;
+        }
+        if (this.root.querySelector('[name=background]').value == '') {
+          alertify.error('Please enter a brief background for your character.');
+          error++;
+        }
+
+        if (error === 0) {
+          events.trigger('stage:next', stage);
+        }
+      }.bind(this);
+
+      this.on('mount', function () {
+        $('.selectpicker').selectpicker();
+      });
+    </script>
+
+    <style>
+      .label-cgen {
+        padding: 3px 5px;
+        color: #fff;
+        background-color: #6B0C22;
+        border-radius: 4px;
+      }
+
+      textarea {
+        margin: 0;
+      }
+    </style>
+</demographics>

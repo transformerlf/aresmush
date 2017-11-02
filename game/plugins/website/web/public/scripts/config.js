@@ -1,1 +1,1 @@
-var config = {"port":9001,"mu_name":"Local Test","host":"localhost"};
+var config = {"port":9001,"mu_name":"Transformers","host":"127.0.0.1"};
